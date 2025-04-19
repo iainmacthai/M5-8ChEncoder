@@ -186,7 +186,7 @@ void UpdateChannel(uint8_t channel, lv_obj_t* arc, lv_obj_t* valueLabel, lv_obj_
 #### Usage:
 + When the button is pressed, the current value is locked, and the encoder stops affecting it.
 + Press the button again to unlock and resume adjustments.
-+ The locked value (current_val) can be used elsewhere in your code as needed.
+
 #### To-Do
 - [x] Correctly Map Encoders from 0-100 to match UI ARCS
 - [x] Provide Haptic Feedback with Buzzer
@@ -210,6 +210,12 @@ void UpdateChannel(uint8_t channel, lv_obj_t* arc, lv_obj_t* valueLabel, lv_obj_
 It Consists of a 2 screen UI on the M5Dial
 + Screen 1 Shows Encoder Channels 1-4
 + Screen 2 Shows Encoder Channels 5-8
+
+### Enhancement
+#### Create a global variables to be used elsewhere and add serial debugging
++ Uses global variables to track encoder states.
++ Add serial debugging of encoder values and states to check it matches the UI
+   + Updates once per second using non-blocking millis()
 #### Declare Global Variables:
 ```
 #include "ui_helpers.h"
@@ -267,11 +273,6 @@ Encoder 3: Value=12   State=ACTIVE
 ...
 ---------------------
 ```
-
-
-#### Features:
-+ Updates exactly once per second using non-blocking millis()
-+ Uses global variables to track encoder states.
 
 #### To-Do
 - [x] Correctly Map Encoders from 0-100 to match UI ARCS
