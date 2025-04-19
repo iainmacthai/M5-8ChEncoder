@@ -132,12 +132,13 @@ void UpdateCH8() { UpdateChannel(7, ui_Enc8Arc, ui_Enc8ValueLabel, ui_Enc8BtnVal
 It Consists of a 2 screen UI on the M5Dial
 + Screen 1 Shows Encoder Channels 1-4
 + Screen 2 Shows Encoder Channels 5-8
-+ (CHANGE) modified UpdateChannel function: Changes the functionality of the button on each encoder value to make the encoder "Active" or Locked" and stores the value
+### Enhancement
+#### Create a single consolidated update channel function
    + Add Lock State Tracking: Introduce a locked array to track whether each encoder channel is locked
    + Modify Encoder Delta Handling: Only apply encoder changes when the channel is unlocked.
-   + Toggle Lock State on Button Press: Update the lock state when the button is pressed and provide feedback.
+   + Button Toggle: Pressing the button toggles the lock state (on rising edge) and updates the label and provides buzzer feedback.
    + Update Button Label: Reflect the lock state instead of the button's physical state.
-modified UpdateChannel function:
+#### modified UpdateChannel function:
 ```
 void UpdateChannel(uint8_t channel, lv_obj_t* arc, lv_obj_t* valueLabel, lv_obj_t* btnLabel) {
     static int current_val[8] = {0};
@@ -182,11 +183,6 @@ void UpdateChannel(uint8_t channel, lv_obj_t* arc, lv_obj_t* valueLabel, lv_obj_
     }
 }
 ```
-#### Key Changes:
-+ Lock State: The locked array tracks whether adjustments are allowed for each encoder.
-+ Delta Handling: Encoder values only update when the channel is unlocked.
-+ Button Toggle: Pressing the button toggles the lock state (on rising edge) and updates the label.
-+ Visual/Audible Feedback: The button label shows "LOCKED" (red) or "ACTIVE" (green), and a beep confirms the toggle.
 #### Usage:
 + When the button is pressed, the current value is locked, and the encoder stops affecting it.
 + Press the button again to unlock and resume adjustments.
