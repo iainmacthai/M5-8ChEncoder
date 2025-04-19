@@ -44,6 +44,7 @@ static bool last_btn = false;
 - [ ] Correctly Map Encoders from 0-100 to match UI ARCS
 - [ ] Provide Haptic Feedback with Buzzer
 - [ ] Add encoder reset button
+- [x] Add Active / Locked function with button press for each channel
 - [ ] Store encoder/switch/button values in register on Encoder unit for power down
 - [ ] Display correct values on power on
 - [ ] Utilise the Built-in LED's on the unit
@@ -116,6 +117,7 @@ void UpdateCH8() { UpdateChannel(7, ui_Enc8Arc, ui_Enc8ValueLabel, ui_Enc8BtnVal
 - [x] Correctly Map Encoders from 0-100 to match UI ARCS
 - [x] Provide Haptic Feedback with Buzzer
 - [ ] Add encoder reset button
+- [x] Add Active / Locked function with button press for each channel
 - [ ] Store encoder/switch/button values in register on Encoder unit for power down
 - [ ] Display correct values on power on
 - [ ] Utilise the Built-in LED's on the unit
@@ -134,11 +136,70 @@ void UpdateCH8() { UpdateChannel(7, ui_Enc8Arc, ui_Enc8ValueLabel, ui_Enc8BtnVal
 It Consists of a 2 screen UI on the M5Dial
 + Screen 1 Shows Encoder Channels 1-4
 + Screen 2 Shows Encoder Channels 5-8
++ (CHANGE) modified UpdateChannel function: Changes the functionality of the button on each encoder value to make the encoder "Active" or Locked" and stores the value
+   + Add Lock State Tracking: Introduce a locked array to track whether each encoder channel is locked
+   + Modify Encoder Delta Handling: Only apply encoder changes when the channel is unlocked.
+   + Toggle Lock State on Button Press: Update the lock state when the button is pressed and provide feedback.
+   + Update Button Label: Reflect the lock state instead of the button's physical state.
+modified UpdateChannel function:
+```
+void UpdateChannel(uint8_t channel, lv_obj_t* arc, lv_obj_t* valueLabel, lv_obj_t* btnLabel) {
+    static int current_val[8] = {0};
+    static bool last_btn[8] = {false};
+    static int last_val[8] = {0};
+    static bool locked[8] = {false}; // Tracks lock state for each channel
 
+    int delta = sensor.getIncrementValue(channel);
+    bool btn = sensor.getButtonStatus(channel);
+
+    // Apply encoder delta only if the channel is unlocked
+    if (!locked[channel]) {
+        int new_val = current_val[channel] + delta;
+        new_val = constrain(new_val, 0, 100);
+
+        // Play sound if the value hits min/max
+        if (new_val != (current_val[channel] + delta)) {
+            M5Dial.Speaker.tone(5000, 250);
+        }
+
+        current_val[channel] = new_val;
+
+        // Update UI if value changed
+        if (current_val[channel] != last_val[channel]) {
+            lv_arc_set_value(arc, current_val[channel]);
+            lv_label_set_text_fmt(valueLabel, "%d", current_val[channel]);
+            last_val[channel] = current_val[channel];
+        }
+    }
+
+    // Handle button press to toggle lock state
+    if (btn != last_btn[channel]) {
+        if (btn) { // Rising edge (button pressed)
+            locked[channel] = !locked[channel];
+            M5Dial.Speaker.tone(3000, 100); // Audible feedback on toggle
+        }
+        last_btn[channel] = btn;
+
+        // Update button label to reflect lock state
+        lv_label_set_text(btnLabel, locked[channel] ? "LOCKED" : "ACTIVE");
+        lv_obj_set_style_text_color(btnLabel, locked[channel] ? lv_color_hex(0xFF0000) : lv_color_hex(0x00FF00), LV_PART_MAIN | LV_STATE_DEFAULT);
+    }
+}
+```
+#### Key Changes:
++ Lock State: The locked array tracks whether adjustments are allowed for each encoder.
++ Delta Handling: Encoder values only update when the channel is unlocked.
++ Button Toggle: Pressing the button toggles the lock state (on rising edge) and updates the label.
++ Visual/Audible Feedback: The button label shows "LOCKED" (red) or "ACTIVE" (green), and a beep confirms the toggle.
+#### Usage:
++ When the button is pressed, the current value is locked, and the encoder stops affecting it.
++ Press the button again to unlock and resume adjustments.
++ The locked value (current_val) can be used elsewhere in your code as needed.
 ### To-Do
 - [x] Correctly Map Encoders from 0-100 to match UI ARCS
 - [x] Provide Haptic Feedback with Buzzer
 - [ ] Add encoder reset button
+- [x] Add Active / Locked function with button press for each channel
 - [ ] Store encoder/switch/button values in register on Encoder unit for power down
 - [ ] Display correct values on power on
 - [ ] Utilise the Built-in LED's on the unit
