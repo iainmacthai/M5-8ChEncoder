@@ -5,7 +5,7 @@ A collection of templates showing the use of an M5 Stack Dial with An 8 Ch Encod
 ![SLS 2 page menu](https://github.com/user-attachments/assets/78262991-b92f-4e33-8160-df45b31528e1)
 
 --------------------------------------------------------
-### M5-8ChEncoderV1.0
+## M5-8ChEncoderV1.0
 
 It Consists of a 2 screen UI on the M5Dial
 + Screen 1 Shows Encoder Channels 1-4
@@ -40,7 +40,7 @@ static bool last_btn = false;
 ```
 + The UI Encoder Arc's displaying the Encoder Values are set from 0-100
 + The encoders constantly rotate and are not clamped so the UI Arcs reach 100 or 0 and wrap around with positive and negative numbers
-### To-Do
+#### To-Do
 - [ ] Correctly Map Encoders from 0-100 to match UI ARCS
 - [ ] Provide Haptic Feedback with Buzzer
 - [ ] Add encoder reset button
@@ -58,7 +58,7 @@ static bool last_btn = false;
 - [ ] Add splash screen
 - [ ] Tidy Up Code
 --------------------------------------------------------
-### M5-8ChEncoderV1.1
+## M5-8ChEncoderV1.1
 
 It Consists of a 2 screen UI on the M5Dial
 + Screen 1 Shows Encoder Channels 1-4
@@ -113,7 +113,7 @@ void UpdateCH8() { UpdateChannel(7, ui_Enc8Arc, ui_Enc8ValueLabel, ui_Enc8BtnVal
 + The UI Encoder Arc's displaying the Encoder Values are set from 0-100
 + The encoders constantly rotate and are not clamped so the UI Arcs reach 100 or 0 and wrap around with positive and negative numbers
 
-### To-Do
+#### To-Do
 - [x] Correctly Map Encoders from 0-100 to match UI ARCS
 - [x] Provide Haptic Feedback with Buzzer
 - [ ] Add encoder reset button
@@ -131,7 +131,7 @@ void UpdateCH8() { UpdateChannel(7, ui_Enc8Arc, ui_Enc8ValueLabel, ui_Enc8BtnVal
 - [ ] Add splash screen
 - [ ] Tidy Up Code
 --------------------------------------------------------
-### M5-8ChEncoderV1.2
+## M5-8ChEncoderV1.2
 
 It Consists of a 2 screen UI on the M5Dial
 + Screen 1 Shows Encoder Channels 1-4
@@ -195,7 +195,7 @@ void UpdateChannel(uint8_t channel, lv_obj_t* arc, lv_obj_t* valueLabel, lv_obj_
 + When the button is pressed, the current value is locked, and the encoder stops affecting it.
 + Press the button again to unlock and resume adjustments.
 + The locked value (current_val) can be used elsewhere in your code as needed.
-### To-Do
+#### To-Do
 - [x] Correctly Map Encoders from 0-100 to match UI ARCS
 - [x] Provide Haptic Feedback with Buzzer
 - [ ] Add encoder reset button
@@ -213,9 +213,68 @@ void UpdateChannel(uint8_t channel, lv_obj_t* arc, lv_obj_t* valueLabel, lv_obj_
 - [ ] Add splash screen
 - [ ] Tidy Up Code
 --------------------------------------------------------
+## M5-8ChEncoderV1.2.1
+
+It Consists of a 2 screen UI on the M5Dial
++ Screen 1 Shows Encoder Channels 1-4
++ Screen 2 Shows Encoder Channels 5-8
+#### added global variable:
+```
+#include "ui_helpers.h"
+#include "UNIT_8ENCODER.h"
+
+UNIT_8ENCODER sensor;
+// Global encoder state tracking
+int current_val[8] = {0};  // added for version 1.2.1 
+bool locked[8] = {false};  // added for version 1.2.1 
+```
+#### modified UpdateChannel function:
+```
+void UpdateChannel(uint8_t channel, lv_obj_t* arc, lv_obj_t* valueLabel, lv_obj_t* btnLabel) {
+    // Remove these lines to use global variables
+    // static int current_val[8] = {0};  // ❌ DELETE THIS LINE for V1.2.1
+    static bool last_btn[8] = {false};
+    static int last_val[8] = {0};
+    //static bool locked[8] = {false}; // ❌ DELETE THIS LINE for V1.2.1
+
+    int delta = sensor.getIncrementValue(channel);
+    bool btn = sensor.getButtonStatus(channel);
+
+    // The code will now use the global current_val array
+    // ... (rest of the function remains unchanged)
+}
+```
+#### Key Changes:
++ Lock State: The locked array tracks whether adjustments are allowed for each encoder.
++ Delta Handling: Encoder values only update when the channel is unlocked.
++ Button Toggle: Pressing the button toggles the lock state (on rising edge) and updates the label.
++ Visual/Audible Feedback: The button label shows "LOCKED" (red) or "ACTIVE" (green), and a beep confirms the toggle.
+#### Usage:
++ When the button is pressed, the current value is locked, and the encoder stops affecting it.
++ Press the button again to unlock and resume adjustments.
++ The locked value (current_val) can be used elsewhere in your code as needed.
+#### To-Do
+- [x] Correctly Map Encoders from 0-100 to match UI ARCS
+- [x] Provide Haptic Feedback with Buzzer
+- [ ] Add encoder reset button
+- [x] Add Active / Locked function with button press for each channel
+- [ ] Store encoder/switch/button values in register on Encoder unit for power down
+- [ ] Display correct values on power on
+- [ ] Utilise the Built-in LED's on the unit
+- [ ] Incorporate MQTT/WiFI
+- [ ] Create Settings Interface / Extra Screens
+- [ ] TBC
+- [ ] TBC
+- [ ] TBC
+- [ ] TBC
+- [ ] TBC
+- [ ] Add splash screen
+- [ ] Tidy Up Code
+
+--------------------------------------------------------
 ## Mentions / Credit
 Thanks to the below for inspiration / help
-### Help
+#### Help
 + Miroslav / @dronecz :pray: <[SquareLine Studio Help Post](https://forum.squareline.io/t/how-to-use-button-to-activate-a-function/856/9)>
 + Deepseek :wink:
 ### Inspration
