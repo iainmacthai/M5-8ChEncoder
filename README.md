@@ -297,6 +297,82 @@ Encoder 3: Value=12   State=ACTIVE
 - [ ] Tidy Up Code
 
 --------------------------------------------------------
+## M5-8ChEncoderV1.3
+
+It Consists of a 2 screen UI on the M5Dial
++ Screen 1 Shows Encoder Channels 1-4
++ Screen 2 Shows Encoder Channels 5-8
+
+### Enhancement
+#### Add LED functionality on Encoder Unit
++ LED's Track the state change of each encoder (Red Locked - Green Active) mimicking the UI.
+
+#### Initialize LEDs in void setup():
+```
+void setup() {
+    auto cfg = M5.config();
+    M5Dial.begin(cfg, true, false);
+    M5Dial.Display.setBrightness(80);
+    Serial.begin(115200);
+    tft_lv_initialization();
+    init_disp_driver();
+    init_touch_driver();
+    ui_init();
+    WIRE.begin(13,15);
+    sensor.begin(&Wire, ENCODER_ADDR, 13, 15, 100000UL);
+    // Initialize LEDs 1-8 to Blue & Status LED to Yellow  
+    delay(100);    //small hardware delay                 ✅// ADD for V1.3
+    for (uint8_t i = 0; i < 8; i++) {                     ✅// ADD for V1.3
+        sensor.setLEDColor(i, 0x0000ff);                  ✅// ADD for V1.3
+    }                                                     ✅// ADD for V1.3
+    sensor.setLEDColor(8, 0xFFDE21);                      ✅// ADD for V1.3
+    delay(1000);                                          ✅// ADD for V1.3
+
+}
+
+```
+#### Link to button state check in void UpdateChannel():
+```
+// Handle button press to toggle lock state
+    if (btn != last_btn[channel]) {
+        if (btn) { // Rising edge (button pressed)
+            locked[channel] = !locked[channel];
+            M5Dial.Speaker.tone(3000, 100); // Audible feedback on toggle
+            // Update RGB LED (channels 1-8, not 0-7)
+            sensor.setLEDColor(                                        ✅// ADD for V1.3    
+                channel,                                               ✅// ADD for V1.3
+                locked[channel] ? 0xFF0000 : 0x00FF00 // Red : Green   ✅// ADD for V1.3
+            );                                                         ✅// ADD for V1.3
+        }
+        last_btn[channel] = btn;
+
+        // Update button label to reflect lock state
+        lv_label_set_text(btnLabel, locked[channel] ? "LOCKED" : "ACTIVE");
+        lv_obj_set_style_text_color(btnLabel, locked[channel] ? lv_color_hex(0xFF0000) : lv_color_hex(0x00FF00), LV_PART_MAIN | LV_STATE_DEFAULT);
+    }
+
+```
+
+
+#### To-Do
+- [x] Correctly Map Encoders from 0-100 to match UI ARCS
+- [x] Provide Haptic Feedback with Buzzer
+- [ ] Add encoder reset button
+- [x] Add Active / Locked function with button press for each channel
+- [ ] Store encoder/switch/button values in register on Encoder unit for power down
+- [ ] Display correct values on power on
+- [x] Utilise the Built-in LED's on the unit
+- [ ] Incorporate MQTT/WiFI
+- [ ] Create Settings Interface / Extra Screens
+- [x] Add toggle switch to screen 2
+- [ ] TBC
+- [ ] TBC
+- [ ] TBC
+- [ ] Add Option where toggle switch changes from showing encoder value to a text option mapped to the value
+   - [ ] of the encoder from a predefined list (0-10 = send mqqt message A, 11-20 = send mqtt message B etc)
+- [ ] Add splash screen
+- [ ] Tidy Up Code
+-------------------------------------------------------------------------------------
 ## Mentions / Credit
 Thanks to the below for inspiration / help
 #### Help
