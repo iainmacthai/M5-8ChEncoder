@@ -225,8 +225,8 @@ It Consists of a 2 screen UI on the M5Dial
 
 UNIT_8ENCODER sensor;
 // Global encoder state tracking
-int current_val[8] = {0};  // added for version 1.2.1 
-bool locked[8] = {false};  // added for version 1.2.1 
+int current_val[8] = {0};  //  ADD THIS LINE for V1.2.1 
+bool locked[8] = {false};  // ADD THIS LINE for V1.2.1:
 ```
 #### modified UpdateChannel function:
 ```
