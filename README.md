@@ -149,3 +149,4 @@ It Consists of a 2 screen UI on the M5Dial
 - [ ] Add splash screen
 - [ ] Tidy Up Code
 --------------------------------------------------------
+### Mentions
