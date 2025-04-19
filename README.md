@@ -53,7 +53,8 @@ static bool last_btn = false;
 - [ ] TBC
 - [ ] TBC
 - [ ] TBC
-- [ ] TBC
+- [ ] Add Option where toggle switch changes from showing encoder value to a text option mapped to the value
+   - [ ] of the encoder from a predefined list (0-10 = send mqqt message A, 11-20 = send mqtt message B etc)
 - [ ] Add splash screen
 - [ ] Tidy Up Code
 --------------------------------------------------------
@@ -123,7 +124,8 @@ void UpdateCH8() { UpdateChannel(7, ui_Enc8Arc, ui_Enc8ValueLabel, ui_Enc8BtnVal
 - [ ] TBC
 - [ ] TBC
 - [ ] TBC
-- [ ] TBC
+- [ ] Add Option where toggle switch changes from showing encoder value to a text option mapped to the value
+   - [ ] of the encoder from a predefined list (0-10 = send mqqt message A, 11-20 = send mqtt message B etc)
 - [ ] Add splash screen
 - [ ] Tidy Up Code
 --------------------------------------------------------
@@ -201,7 +203,8 @@ void UpdateChannel(uint8_t channel, lv_obj_t* arc, lv_obj_t* valueLabel, lv_obj_
 - [ ] TBC
 - [ ] TBC
 - [ ] TBC
-- [ ] TBC
+- [ ] Add Option where toggle switch changes from showing encoder value to a text option mapped to the value
+   - [ ] of the encoder from a predefined list (0-10 = send mqqt message A, 11-20 = send mqtt message B etc)
 - [ ] Add splash screen
 - [ ] Tidy Up Code
 --------------------------------------------------------
@@ -288,7 +291,8 @@ Encoder 3: Value=12   State=ACTIVE
 - [ ] TBC
 - [ ] TBC
 - [ ] TBC
-- [ ] TBC
+- [ ] Add Option where toggle switch changes from showing encoder value to a text option mapped to the value
+   - [ ] of the encoder from a predefined list (0-10 = send mqqt message A, 11-20 = send mqtt message B etc)
 - [ ] Add splash screen
 - [ ] Tidy Up Code
 
