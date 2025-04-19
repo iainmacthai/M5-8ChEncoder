@@ -371,7 +371,7 @@ void setup() {
 - [ ] Add Option where toggle switch changes from showing encoder value to a text option mapped to the value
    - [ ] of the encoder from a predefined list (0-10 = send mqqt message A, 11-20 = send mqtt message B etc)
 - [ ] Add splash screen
-- [✅ ] Tidy Up Code
+- [✅] Tidy Up Code
 -------------------------------------------------------------------------------------
 ## Mentions / Credit
 Thanks to the below for inspiration / help
