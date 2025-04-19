@@ -63,7 +63,6 @@ static bool last_btn = false;
 It Consists of a 2 screen UI on the M5Dial
 + Screen 1 Shows Encoder Channels 1-4
 + Screen 2 Shows Encoder Channels 5-8
-+ Both screen show the toggle switch button
 
 + (CHANGE) There is a single void UpdateChannel() which sets the encoder range from 0-100 and add some haptic feedback at 0 or 100 with a buzzer
 ```
