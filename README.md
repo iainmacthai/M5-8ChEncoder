@@ -225,8 +225,8 @@ It Consists of a 2 screen UI on the M5Dial
 
 UNIT_8ENCODER sensor;
 // Global encoder state tracking
-int current_val[8] = {0};  //  ADD THIS LINE for V1.2.1 
-bool locked[8] = {false};  // ADD THIS LINE for V1.2.1:
+int current_val[8] = {0};  // ✅ ADD THIS LINE for V1.2.1 
+bool locked[8] = {false};  // ✅ ADD THIS LINE for V1.2.1:
 ```
 #### Remove Static Variables:
 ```
@@ -237,7 +237,7 @@ void UpdateChannel(uint8_t channel, lv_obj_t* arc, lv_obj_t* valueLabel, lv_obj_
     static int last_val[8] = {0};
     //static bool locked[8] = {false}; // ❌ DELETE THIS LINE for V1.2.1
 
-    int delta = sensor.getIncrementValue(channel);
+    int delta = sensor.getIncrementValue(channel);  
     bool btn = sensor.getButtonStatus(channel);
 
     // The code will now use the global current_val array
