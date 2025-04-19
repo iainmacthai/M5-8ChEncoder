@@ -138,7 +138,7 @@ It Consists of a 2 screen UI on the M5Dial
    + Modify Encoder Delta Handling: Only apply encoder changes when the channel is unlocked.
    + Button Toggle: Pressing the button toggles the lock state (on rising edge) and updates the label and provides buzzer feedback.
    + Update Button Label: Reflect the lock state instead of the button's physical state.
-#### modified UpdateChannel function:
+#### Modified UpdateChannel function:
 ```
 void UpdateChannel(uint8_t channel, lv_obj_t* arc, lv_obj_t* valueLabel, lv_obj_t* btnLabel) {
     static int current_val[8] = {0};
