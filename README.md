@@ -10,9 +10,9 @@ A collection of templates showing the use of an M5 Stack Dial with An 8 Ch Encod
 It Consists of a 2 screen UI on the M5Dial
 + Screen 1 Shows Encoder Channels 1-4
 + Screen 2 Shows Encoder Channels 5-8
-
-
-+ There is a separate void UpdateCH"n"() for each encoder
++ The UI Encoder Arc's displaying the Encoder Values are set from 0-100
++ The Encoders constantly rotate and are not clamped so the UI Arcs reach 100 or 0 and wrap around with positive and negative numbers
++ For Simplicity there is a separate void UpdateCH"n"() for each encoder
 ```
 // Separate UpdateChannel function
 void UpdateCH7()
@@ -38,8 +38,7 @@ static bool last_btn = false;
 }
 }
 ```
-+ The UI Encoder Arc's displaying the Encoder Values are set from 0-100
-+ The encoders constantly rotate and are not clamped so the UI Arcs reach 100 or 0 and wrap around with positive and negative numbers
+
 #### To-Do
 - [ ] Correctly Map Encoders from 0-100 to match UI ARCS
 - [ ] Provide Haptic Feedback with Buzzer
@@ -63,8 +62,9 @@ static bool last_btn = false;
 It Consists of a 2 screen UI on the M5Dial
 + Screen 1 Shows Encoder Channels 1-4
 + Screen 2 Shows Encoder Channels 5-8
-
-+ (CHANGE) There is a single void UpdateChannel() which sets the encoder range from 0-100 and add some haptic feedback at 0 or 100 with a buzzer
+### Enhancement
+#### Create a single consolidated update channel function
++  There is a simpler single void UpdateChannel() which sets the encoder range from 0-100 and add some haptic feedback at 0 or 100 with a buzzer
 ```
 // Consolidated UpdateChannel function
 void UpdateChannel(uint8_t channel, lv_obj_t* arc, lv_obj_t* valueLabel, lv_obj_t* btnLabel) {
@@ -96,7 +96,8 @@ void UpdateChannel(uint8_t channel, lv_obj_t* arc, lv_obj_t* valueLabel, lv_obj_
     }
 }
 ```
-+ (CHANGE)The void UpdateChannel which is applied to each void UpdateCH'n'() So that each channels encoder now works correctly in ranges 0-100 with haptic feedback
+#### Apply that to each channel update in the main loop
++ The void UpdateChannel which is applied to each void UpdateCH'n'() So that each channels encoder now works correctly in ranges 0-100 with haptic feedback
 ```
 void UpdateCH1() { UpdateChannel(0, ui_Enc1Arc, ui_Enc1ValueLabel, ui_Enc1BtnValueLabel); }
 void UpdateCH2() { UpdateChannel(1, ui_Enc2Arc, ui_Enc2ValueLabel, ui_Enc2BtnValueLabel); }
@@ -107,10 +108,6 @@ void UpdateCH6() { UpdateChannel(5, ui_Enc6Arc, ui_Enc6ValueLabel, ui_Enc6BtnVal
 void UpdateCH7() { UpdateChannel(6, ui_Enc7Arc, ui_Enc7ValueLabel, ui_Enc7BtnValueLabel); }
 void UpdateCH8() { UpdateChannel(7, ui_Enc8Arc, ui_Enc8ValueLabel, ui_Enc8BtnValueLabel); }
 ```
-
-
-+ The UI Encoder Arc's displaying the Encoder Values are set from 0-100
-+ The encoders constantly rotate and are not clamped so the UI Arcs reach 100 or 0 and wrap around with positive and negative numbers
 
 #### To-Do
 - [x] Correctly Map Encoders from 0-100 to match UI ARCS
