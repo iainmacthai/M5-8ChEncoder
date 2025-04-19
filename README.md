@@ -149,4 +149,11 @@ It Consists of a 2 screen UI on the M5Dial
 - [ ] Add splash screen
 - [ ] Tidy Up Code
 --------------------------------------------------------
-### Mentions
+## Mentions / Credit
+Thanks to the below for inspiration / help
+### Help
++ Miroslav / @dronecz :pray: <[SquareLine Studio Help Post](https://forum.squareline.io/t/how-to-use-button-to-activate-a-function/856/9)>
++ Deepseek :wink:
+### Inspration
++ VolosProjects :thumbsup: @VolosR
++ 
