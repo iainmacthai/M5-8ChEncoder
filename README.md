@@ -218,7 +218,7 @@ void UpdateChannel(uint8_t channel, lv_obj_t* arc, lv_obj_t* valueLabel, lv_obj_
 It Consists of a 2 screen UI on the M5Dial
 + Screen 1 Shows Encoder Channels 1-4
 + Screen 2 Shows Encoder Channels 5-8
-#### added global variable:
+#### Declare Global Variables:
 ```
 #include "ui_helpers.h"
 #include "UNIT_8ENCODER.h"
@@ -228,7 +228,7 @@ UNIT_8ENCODER sensor;
 int current_val[8] = {0};  //  ADD THIS LINE for V1.2.1 
 bool locked[8] = {false};  // ADD THIS LINE for V1.2.1:
 ```
-#### modified UpdateChannel function:
+#### Remove Static Variables:
 ```
 void UpdateChannel(uint8_t channel, lv_obj_t* arc, lv_obj_t* valueLabel, lv_obj_t* btnLabel) {
     // Remove these lines to use global variables
@@ -243,16 +243,44 @@ void UpdateChannel(uint8_t channel, lv_obj_t* arc, lv_obj_t* valueLabel, lv_obj_
     // The code will now use the global current_val array
     // ... (rest of the function remains unchanged)
 }
+
 ```
-#### Key Changes:
-+ Lock State: The locked array tracks whether adjustments are allowed for each encoder.
-+ Delta Handling: Encoder values only update when the channel is unlocked.
-+ Button Toggle: Pressing the button toggles the lock state (on rising edge) and updates the label.
-+ Visual/Audible Feedback: The button label shows "LOCKED" (red) or "ACTIVE" (green), and a beep confirms the toggle.
-#### Usage:
-+ When the button is pressed, the current value is locked, and the encoder stops affecting it.
-+ Press the button again to unlock and resume adjustments.
-+ The locked value (current_val) can be used elsewhere in your code as needed.
+#### Add Serial Output Code:
+```
+void loop() {
+    // Existing code...
+    M5Dial.update();
+
+    // Print encoder states every second
+    static unsigned long lastPrint = 0;
+    if (millis() - lastPrint >= 1000) {
+        lastPrint = millis();
+        for (int i = 0; i < 8; i++) {
+            Serial.printf("Encoder %d: Value=%-3d  State=%s\n",
+                i+1,
+                current_val[i],
+                locked[i] ? "LOCKED" : "ACTIVE"
+            );
+        }
+        Serial.println("---------------------");
+    }
+}
+```
+#### Example Output:
+
+```
+Encoder 1: Value=47   State=ACTIVE
+Encoder 2: Value=89   State=LOCKED
+Encoder 3: Value=12   State=ACTIVE
+...
+---------------------
+```
+
+
+#### Features:
++ Updates exactly once per second using non-blocking millis()
++ Uses global variables to track encoder states.
+
 #### To-Do
 - [x] Correctly Map Encoders from 0-100 to match UI ARCS
 - [x] Provide Haptic Feedback with Buzzer
