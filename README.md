@@ -10,7 +10,7 @@ A collection of templates showing the use of an M5 Stack Dial with An 8 Ch Encod
 It Consists of a 2 screen UI on the M5Dial
 + Screen 1 Shows Encoder Channels 1-4
 + Screen 2 Shows Encoder Channels 5-8
-+ Both screen show the toggle switch button
+
 
 + There is a separate void UpdateCH"n"() for each encoder
 ```
@@ -50,7 +50,7 @@ static bool last_btn = false;
 - [ ] Utilise the Built-in LED's on the unit
 - [ ] Incorporate MQTT/WiFI
 - [ ] Create Settings Interface / Extra Screens
-- [ ] TBC
+- [x] Add toggle switch to screen 2
 - [ ] TBC
 - [ ] TBC
 - [ ] TBC
@@ -123,7 +123,7 @@ void UpdateCH8() { UpdateChannel(7, ui_Enc8Arc, ui_Enc8ValueLabel, ui_Enc8BtnVal
 - [ ] Utilise the Built-in LED's on the unit
 - [ ] Incorporate MQTT/WiFI
 - [ ] Create Settings Interface / Extra Screens
-- [ ] TBC
+- [x] Add toggle switch to screen 2
 - [ ] TBC
 - [ ] TBC
 - [ ] TBC
@@ -205,7 +205,7 @@ void UpdateChannel(uint8_t channel, lv_obj_t* arc, lv_obj_t* valueLabel, lv_obj_
 - [ ] Utilise the Built-in LED's on the unit
 - [ ] Incorporate MQTT/WiFI
 - [ ] Create Settings Interface / Extra Screens
-- [ ] TBC
+- [x] Add toggle switch to screen 2
 - [ ] TBC
 - [ ] TBC
 - [ ] TBC
@@ -291,7 +291,7 @@ Encoder 3: Value=12   State=ACTIVE
 - [ ] Utilise the Built-in LED's on the unit
 - [ ] Incorporate MQTT/WiFI
 - [ ] Create Settings Interface / Extra Screens
-- [ ] TBC
+- [x] Add toggle switch to screen 2
 - [ ] TBC
 - [ ] TBC
 - [ ] TBC
@@ -305,7 +305,7 @@ Thanks to the below for inspiration / help
 #### Help
 + Miroslav / @dronecz :pray: <[SquareLine Studio Help Post](https://forum.squareline.io/t/how-to-use-button-to-activate-a-function/856/9)>
 + Deepseek :wink:
-### Inspration
+#### Inspration
 + VolosProjects :thumbsup: @VolosR
 + 
 
