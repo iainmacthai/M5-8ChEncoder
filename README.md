@@ -4,7 +4,8 @@ A collection of templates showing the use of an M5 Stack Dial with An 8 Ch Encod
 
 ![SLS 2 page menu](https://github.com/user-attachments/assets/78262991-b92f-4e33-8160-df45b31528e1)
 
-## Table of Contents (versions)
+## Contents
+- [Section 2](#section-2)
 - [Version 1.0](#M5-8ChEncoderV1.0)
 - [Version 1.1](#M5-8ChEncoderV1.1)
 - [Version 1.2](#M5-8ChEncoderV1.2)
@@ -65,6 +66,7 @@ static bool last_btn = false;
 - [ ] Add splash screen
 - [ ] Tidy Up Code
 --------------------------------------------------------
+## Section 2
 ## M5-8ChEncoderV1.1
 
 It Consists of a 2 screen UI on the M5Dial
