@@ -4,6 +4,8 @@ A collection of templates showing the use of an M5 Stack Dial with An 8 Ch Encod
 
 ![SLS 2 page menu](https://github.com/user-attachments/assets/78262991-b92f-4e33-8160-df45b31528e1)
 
+Table of Contents (versions)
+- M5-8ChEncoderV1.0[Version 1.0](#M5-8ChEncoderV1.0)
 --------------------------------------------------------
 ## M5-8ChEncoderV1.0
 
