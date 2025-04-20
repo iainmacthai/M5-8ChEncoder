@@ -10,7 +10,7 @@ A collection of templates showing the use of an M5 Stack Dial with An 8 Ch Encod
 - [Version 1.2](#m5-8chencoder-v12)
 - - [Version 1.2.1](#m5-8chencoder-v121)
 - [Version 1.3](#m5-8chencoder-v13)
-- [Credits / Mentions](#-Credits-/-Mentions)
+- [Credits / Mentions](#-credits)
 
 --------------------------------------------------------
 ## M5-8ChEncoder V1.0
@@ -381,7 +381,7 @@ void setup() {
 - [ ] Add splash screen
 - [ ] Tidy Up Code
 -------------------------------------------------------------------------------------
-## Credits / Mentions
+## Credits
 Thanks to the below for inspiration / help
 #### Help
 + Miroslav / @dronecz :pray: <[SquareLine Studio Help Post](https://forum.squareline.io/t/how-to-use-button-to-activate-a-function/856/9)>
