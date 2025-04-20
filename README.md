@@ -14,7 +14,7 @@ A collection of templates showing the use of an M5 Stack Dial with An 8 Ch Encod
 - [Version 1.3](#M5-8ChEncoderV1.3)
 - [Credits / Mentions](#Credits-/-Mentions)
 --------------------------------------------------------
-## M5-8ChEncoderV1.0
+## Version 1.0
 
 It Consists of a 2 screen UI on the M5Dial
 + Screen 1 Shows Encoder Channels 1-4
@@ -67,8 +67,7 @@ static bool last_btn = false;
 - [ ] Add splash screen
 - [ ] Tidy Up Code
 --------------------------------------------------------
-## Section 2
-## M5-8ChEncoderV1.1
+## Version 1.1
 
 It Consists of a 2 screen UI on the M5Dial
 + Screen 1 Shows Encoder Channels 1-4
@@ -139,7 +138,7 @@ void UpdateCH8() { UpdateChannel(7, ui_Enc8Arc, ui_Enc8ValueLabel, ui_Enc8BtnVal
 - [ ] Add splash screen
 - [ ] Tidy Up Code
 --------------------------------------------------------
-## M5-8ChEncoderV1.2
+## Version 1.2
 
 It Consists of a 2 screen UI on the M5Dial
 + Screen 1 Shows Encoder Channels 1-4
@@ -218,7 +217,7 @@ void UpdateChannel(uint8_t channel, lv_obj_t* arc, lv_obj_t* valueLabel, lv_obj_
 - [ ] Add splash screen
 - [ ] Tidy Up Code
 --------------------------------------------------------
-## M5-8ChEncoderV1.2.1
+## Version 1.2.1
 
 It Consists of a 2 screen UI on the M5Dial
 + Screen 1 Shows Encoder Channels 1-4
@@ -307,7 +306,7 @@ Encoder 3: Value=12   State=ACTIVE
 - [ ] Tidy Up Code
 
 --------------------------------------------------------
-## M5-8ChEncoderV1.3
+## Version 1.3
 
 It Consists of a 2 screen UI on the M5Dial
 + Screen 1 Shows Encoder Channels 1-4
