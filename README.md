@@ -10,7 +10,7 @@ A collection of templates showing the use of an M5 Stack Dial with An 8 Ch Encod
 - [Version 1.2](#version-1.2)
 - [Version 1.2.1](#Mversion-1.2.1)
 - [Version 1.3](#version-1.3)
-- [Credits / Mentions](#Credits-/-Mentions)
+
 --------------------------------------------------------
 ## Version 1.0
 
