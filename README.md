@@ -5,14 +5,15 @@ A collection of templates showing the use of an M5 Stack Dial with An 8 Ch Encod
 ![SLS 2 page menu](https://github.com/user-attachments/assets/78262991-b92f-4e33-8160-df45b31528e1)
 
 ## Contents
-- [Version 1](#version-10)
-- [Version 1.1](#version-11)
-- [Version 1.2](#version-12)
-- [Version 1.2.1](#version-121)
-- [Version 1.3](#version-1.3)
+- [Version 1](#m5-8chencoder-v10)
+- [Version 1.1](##m5-8chencoder-v11)
+- [Version 1.2](##m5-8chencoder-v12)
+- - [Version 1.2.1](##m5-8chencoder-v121)
+- [Version 1.3](##m5-8chencoder-v13)
+- [Credits / Mentions](##-Credits-/-Mentions)
 
 --------------------------------------------------------
-## Version 1.0
+## M5-8ChEncoder V1.0
 
 It Consists of a 2 screen UI on the M5Dial
 + Screen 1 Shows Encoder Channels 1-4
@@ -65,7 +66,7 @@ static bool last_btn = false;
 - [ ] Add splash screen
 - [ ] Tidy Up Code
 --------------------------------------------------------
-## Version 1.1
+## M5-8ChEncoder V1.1
 
 It Consists of a 2 screen UI on the M5Dial
 + Screen 1 Shows Encoder Channels 1-4
@@ -136,7 +137,7 @@ void UpdateCH8() { UpdateChannel(7, ui_Enc8Arc, ui_Enc8ValueLabel, ui_Enc8BtnVal
 - [ ] Add splash screen
 - [ ] Tidy Up Code
 --------------------------------------------------------
-## Version 1.2
+## M5-8ChEncoder V1.2
 
 It Consists of a 2 screen UI on the M5Dial
 + Screen 1 Shows Encoder Channels 1-4
@@ -215,7 +216,7 @@ void UpdateChannel(uint8_t channel, lv_obj_t* arc, lv_obj_t* valueLabel, lv_obj_
 - [ ] Add splash screen
 - [ ] Tidy Up Code
 --------------------------------------------------------
-## Version 1.2.1
+## M5-8ChEncoder V1.2.1
 
 It Consists of a 2 screen UI on the M5Dial
 + Screen 1 Shows Encoder Channels 1-4
@@ -304,7 +305,7 @@ Encoder 3: Value=12   State=ACTIVE
 - [ ] Tidy Up Code
 
 --------------------------------------------------------
-## Version 1.3
+## M5-8ChEncoder V1.3
 
 It Consists of a 2 screen UI on the M5Dial
 + Screen 1 Shows Encoder Channels 1-4
