@@ -10,6 +10,7 @@ A collection of templates showing the use of an M5 Stack Dial with An 8 Ch Encod
 - [Version 1.2](#m5-8chencoder-v12)
    - [Version 1.2.1](#m5-8chencoder-v121)
 - [Version 1.3](#m5-8chencoder-v13)
+- [Version 1.4](#m5-8chencoder-v14)
 - [Credits](#credits)
 
 --------------------------------------------------------
@@ -371,6 +372,38 @@ void setup() {
 - [ ] Display correct values on power on
 - [x] Utilise the Built-in LED's on the unit
 - [ ] Incorporate MQTT/WiFI
+- [ ] Create Settings Interface / Extra Screens
+- [x] Add toggle switch to screen 2
+- [ ] TBC
+- [ ] TBC
+- [ ] TBC
+- [ ] Add Option where toggle switch changes from showing encoder value to a text option mapped to the value
+   - [ ] of the encoder from a predefined list (0-10 = send mqqt message A, 11-20 = send mqtt message B etc)
+- [ ] Add splash screen
+- [ ] Tidy Up Code
+-------------------------------------------------------------------------------------
+## M5-8ChEncoder V1.4
+
+It Consists of a 2 screen UI on the M5Dial
++ Screen 1 Shows Encoder Channels 1-4
++ Screen 2 Shows Encoder Channels 5-8
+
+### Enhancement
+#### Add MQTT Functionality, Add Node-Red Test Screen
++ Major Change, lots of code tidy up to do, Lots to document
+
+
+
+
+#### To-Do
+- [x] Correctly Map Encoders from 0-100 to match UI ARCS
+- [x] Provide Haptic Feedback with Buzzer
+- [ ] Add encoder reset button
+- [x] Add Active / Locked function with button press for each channel
+- [ ] Store encoder/switch/button values in register on Encoder unit for power down
+- [ ] Display correct values on power on
+- [x] Utilise the Built-in LED's on the unit
+- [X] Incorporate MQTT/WiFI (Partial)
 - [ ] Create Settings Interface / Extra Screens
 - [x] Add toggle switch to screen 2
 - [ ] TBC
